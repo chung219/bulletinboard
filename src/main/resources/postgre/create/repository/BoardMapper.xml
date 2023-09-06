@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="postgre.create.repository.BoardMapper">
+
+    <!-- 전체 검색 -->
+    <select id="findAll" resultType="Board">
+        SELECT *
+        FROM newboard
+    </select>
+
+    <!-- 페이징 처리 전체 검색 -->
+    <select id="findAllWithPaging" resultType="Board">
+        SELECT id, title, writer, content, to_char(created_date, 'YYYY-MM-DD HH24:MI') AS created_date, view_count, language, password
+        FROM newboard
+        ORDER BY id DESC
+        LIMIT #{page.amount}
+        OFFSET (#{page.pageNum} - 1) * #{page.amount}
+    </select>
+
+    <!-- index로 검색 -->
+    <select id="selectedBoard" resultType="Board">
+        SELECT id, title, writer, content, to_char(created_date, 'YYYY-MM-DD HH24:MI') AS created_date, view_count, language, password
+        FROM newboard
+        WHERE id = #{id}
+    </select>
+
+    <!-- 언어로 검색 -->
+    <select id="findByLanguage" resultType="Board">
+        SELECT *
+        FROM newboard
+        WHERE language = #{language}
+    </select>
+
+    <select id="findByLanguageWithPaging" resultType="Board">
+        SELECT id, title, writer, content, to_char(created_date, 'YYYY-MM-DD HH24:MI') AS created_date, view_count, language, password
+        FROM newboard
+        WHERE language = #{language}
+        ORDER BY id DESC
+        LIMIT #{page.amount}
+        OFFSET (#{page.pageNum} - 1) * #{page.amount}
+    </select>
+
+
+    <!-- DB 삽입 -->
+    <insert id="insert">
+        INSERT INTO newboard (title, writer, content, password, language)
+        VALUES (#{writeDTO.title}, #{writeDTO.writer}, #{writeDTO.content}, #{writeDTO.password}, #{writeDTO.language})
+    </insert>
+
+
+    <!-- DB 업데이트 -->
+    <update id="update">
+        UPDATE newboard SET title = #{updateDTO.title}, content = #{updateDTO.content}, language = #{updateDTO.language}
+        WHERE id = #{id}
+    </update>
+
+    <update id="viewCountUpdate">
+        UPDATE newboard SET view_count = #{viewCount.viewCount}
+        WHERE id = #{id}
+    </update>
+
+    <!-- DB 삭제 -->
+    <delete id="delete">
+        DELETE FROM newboard WHERE id = #{id}
+
+    </delete>
+
+    <!-- 검색 로직 -->
+    <select id="findByTitle" resultType="Board">
+        SELECT * FROM newboard
+        WHERE title LIKE '%'||#{searchContent}||'%'
+    </select>
+
+    <select id="findByTitleWithPaging" resultType="Board">
+        SELECT id, title, writer, content, to_char(created_date, 'YYYY-MM-DD HH24:MI') AS created_date, view_count, language, password FROM newboard
+        WHERE title LIKE '%'||#{searchContent}||'%'
+        ORDER BY id DESC
+        LIMIT #{page.amount}
+        OFFSET (#{page.pageNum} - 1) * #{page.amount}
+    </select>
+
+
+    <select id="findByTitleContent" resultType="Board">
+        SELECT * FROM newboard
+        WHERE title LIKE '%'||#{searchContent}||'%' OR content LIKE '%'||#{searchContent}||'%'
+    </select>
+
+    <select id="findByTitleContentWithPaging" resultType="Board">
+        SELECT id, title, writer, content, to_char(created_date, 'YYYY-MM-DD HH24:MI') AS created_date, view_count, language, password FROM newboard
+        WHERE title LIKE '%'||#{searchContent}||'%' OR content LIKE '%'||#{searchContent}||'%'
+        ORDER BY id DESC
+        LIMIT #{page.amount}
+        OFFSET (#{page.pageNum} - 1) * #{page.amount}
+    </select>
+
+    <select id="findByWriter" resultType="Board">
+        SELECT * FROM newboard
+        WHERE writer = #{searchContent}
+    </select>
+
+    <select id="findByWriterWithPaging" resultType="Board">
+        SELECT id, title, writer, content, to_char(created_date, 'YYYY-MM-DD HH24:MI') AS created_date, view_count, language, password FROM newboard
+        WHERE writer = #{searchContent}
+        ORDER BY id DESC
+        LIMIT #{page.amount}
+        OFFSET (#{page.pageNum} - 1) * #{page.amount}
+    </select>
+
+
+</mapper>

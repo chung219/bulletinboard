@@ -1,0 +1,25 @@
+/*********************
+페이징
+**********************/
+.paging{text-align:center; clear:both; padding: 6px 0;  }
+.sticky-table .paging{ bottom:0; left:0; right:0; background:linear-gradient(180deg,#fff,#f8f8f8); box-shadow: 1px -1px 1px rgba(255,255,255,1) inset; border-top:1px solid #ccc; padding:5px; /*z-index: 9;
+position: -webkit-sticky; position: sticky;*/}
+.sticky-table .paging .wrap{background:linear-gradient(180deg,#fff,#f8f8f8); box-shadow: 1px -1px 1px rgba(255,255,255,1) inset;}
+.paging a{font-weight:bold; min-width:26px; padding:0 5px; font:500 12px/24px 'Noto Sans KR',sans-serif; vertical-align: middle; color:rgba(0,0,0,.8); border-radius: 10px; }
+.paging a.active{background:rgba(0,0,0,.6); color:#fff; }
+.paging a:hover{ color:#009900; background:#009900; color: #fff}
+.paging a.active:hover{background:#009900; color: #fff }
+.paging .btn_first,
+.paging .btn_prev,
+.paging .btn_next,
+.paging .btn_last{  color:rgba(0,0,0,.4); }
+.paging .btn_first:before,
+.paging .btn_prev:before,
+.paging .btn_next:before,
+.paging .btn_last:before{ display:inline-block; font-family: 'fontAwesome'; font-size:13px; line-height: 24px; margin-top:3px  }
+.paging .btn_first:before{content: ''}
+.paging .btn_prev:before{content: ''}
+.paging .btn_next:before{content: ''}
+.paging .btn_last:before{content: ''}
+.paging .btn_prev{}
+.paging .btn_next{}

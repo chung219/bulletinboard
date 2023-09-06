@@ -1,0 +1,125 @@
+/* 테이블 전체 스타일 */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid black;
+}
+
+/* 테이블 헤더 스타일 */
+thead {
+    background-color: #f2f2f2;
+}
+
+th {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid black;
+}
+
+th.table-index {
+    width: 10%;
+}
+
+th.table-title {
+    width: 45%;
+    text-align: center;
+    font-weight: bold;
+}
+
+th.table-writer {
+    width: 15%;
+}
+
+th.table-date {
+    width: 20%;
+}
+
+th.table-viewCount {
+    width: 10%;
+}
+
+
+/* 테이블 본문 스타일 */
+
+/* 마우스 호버 시 행 강조 스타일 */
+tbody tr:hover {
+    background-color: #ddd;
+    text-decoration: underline;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even):hover {
+    background-color: #ddd;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+td.table-index {
+    width: 10%;
+}
+
+td.table-title {
+    width: 45%;
+    text-align: left;
+    font-weight: bold;
+}
+
+td.table-writer {
+    width: 15%;
+}
+
+td.table-date {
+    width: 20%;
+}
+
+td.table-viewCount {
+    width: 10%;
+}
+
+/* 테이블 번호 셀 스타일 */
+td:first-child {
+    font-weight: bold;
+}
+
+/* table footer */
+.table-footer {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+}
+
+.paging {
+    flex-grow: 1; /* 가운데 div가 확장되도록 설정 */
+    text-align: center; /* 가운데 정렬 */
+}
+
+.write {
+    text-align: right; /* 오른쪽 정렬 */
+}
+
+.search {
+    text-align: center; /* 가운데 정렬 */
+}
+
+.search form {
+    display: flex; /* 요소들을 가로로 배치 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+}
+
+.search input[type="text"] {
+    width: 250px;
+}
+
+.search select,
+.search input[type="text"] {
+    margin-right: 10px; /* 요소들 사이의 간격 설정 */
+}
+
